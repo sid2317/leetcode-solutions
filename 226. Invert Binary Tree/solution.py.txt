@@ -1,0 +1,13 @@
+class Solution:
+    def invertTreeHelper(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        if root == None:
+            return root
+             
+        self.invertTreeHelper(root.left)
+        self.invertTreeHelper(root.right)
+            
+        root.left, root.right =  root.right, root.left
+        return root
+        
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        return self.invertTreeHelper(root)

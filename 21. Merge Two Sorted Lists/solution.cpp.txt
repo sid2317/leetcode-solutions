@@ -1,0 +1,51 @@
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        ListNode* sortedList = NULL;
+        ListNode* begin = NULL;
+        while(l1!=NULL && l2!=NULL) {
+            ListNode *sortedNode = new ListNode(min(l1->val, l2->val));
+            if(sortedList == NULL) {
+                sortedList = sortedNode;
+                begin = sortedList;
+                sortedList->next = NULL;
+            }
+            else {
+                sortedList->next = sortedNode;
+                sortedList = sortedNode;
+            }
+            if(l1->val > l2->val)
+                l2 = l2->next;
+            else
+                l1 = l1->next;
+        }
+        
+        while(l1!=NULL) {
+            if(sortedList!= NULL) {
+                sortedList->next = new ListNode(l1->val);
+                sortedList = sortedList->next;
+            }
+            else {
+                sortedList = new ListNode(l1->val);
+                begin = sortedList;
+            }
+            
+            l1 = l1->next;
+        }
+        
+        while(l2!=NULL) {
+            if(sortedList!= NULL) {
+                sortedList->next = new ListNode(l2->val);
+                sortedList = sortedList->next;
+            }
+            else {
+                sortedList = new ListNode(l2->val);
+                begin = sortedList;
+            }
+            
+            l2 = l2->next;
+        }
+        
+        return begin;
+    }
+};

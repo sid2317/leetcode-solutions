@@ -1,0 +1,24 @@
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        s = s.lower()
+        mod_string = ""
+        for char in s:
+            if char.isalnum():
+                mod_string+=char
+        
+        start = 0
+        end =  len(mod_string) - 1
+        if end == 0:
+            return True
+        
+        if end ==1 and mod_string[start]!=mod_string[end]:
+            return False
+        
+        while start < end:
+            if mod_string[start] == mod_string[end]:
+                start+=1
+                end-=1
+            else:
+                return False
+        
+        return True

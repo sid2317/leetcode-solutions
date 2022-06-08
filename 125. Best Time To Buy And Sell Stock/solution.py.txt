@@ -1,0 +1,16 @@
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        days = len(prices)
+        if days == 1:
+            return 0
+        
+        maxprofit = 0
+        leastprice = prices[0]
+        for i in range(1, days):
+            if prices[i] < leastprice:
+                leastprice = prices[i]
+                
+            if prices[i] - leastprice > maxprofit:
+                maxprofit = prices[i]-leastprice
+        
+        return maxprofit

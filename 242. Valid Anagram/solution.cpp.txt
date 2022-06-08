@@ -1,0 +1,22 @@
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        unordered_map<char, int> mapz;
+        if(s.length()!= t.length())
+            return false;
+        
+        int len = s.length();
+        for(int i = 0; i < len; i++) {
+            mapz[s[i]]--;
+            mapz[t[i]]++;
+        }
+        
+        for(const auto& element: mapz) {
+            if(element.second!=0)
+                return false;
+        }
+        
+        return true;
+        
+    }
+};

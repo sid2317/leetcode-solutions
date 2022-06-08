@@ -1,0 +1,25 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        stack<char> paranthesisStack;
+        for(int i=0; i< s.length(); i++) {
+            if(s[i] == '{' || s[i] == '[' || s[i] == '(') {
+                paranthesisStack.push(s[i]);
+            }
+            else {
+                if(paranthesisStack.empty())
+                    return false;
+                if((s[i] == '}' && paranthesisStack.top() == '{') || (s[i] == ']' && paranthesisStack.top() == '[') 
+                   || (s[i] == ')' && paranthesisStack.top() == '('))
+                {
+                    paranthesisStack.pop();
+                }
+                else
+                    return false;
+            }
+            
+        }
+        
+        return paranthesisStack.empty();
+    }
+};
