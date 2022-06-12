@@ -1,0 +1,15 @@
+class Solution:
+    currentmax = 0
+    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:        
+        def diameterHelper(root: Optional[TreeNode])-> int:
+            if root == None:
+                return -1
+
+            height_left = diameterHelper(root.left)
+            height_right = diameterHelper(root.right)
+            self.currentmax = max(self.currentmax,  height_left + height_right + 2)
+
+            return 1 + max(height_left, height_right)
+
+        diameterHelper(root)
+        return self.currentmax

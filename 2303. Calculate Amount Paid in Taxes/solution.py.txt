@@ -1,0 +1,20 @@
+class Solution:
+    def calculateTax(self, brackets: List[List[int]], income: int) -> float:
+        interest = 0
+        prevBracket = 0
+        totalAmountTaxed = 0
+        if income == 0:
+            return 0
+        
+        for item in brackets:
+            upperBracket = item[0]
+            rate = item[1]
+            taxedAmount = upperBracket - prevBracket
+            if income < totalAmountTaxed + taxedAmount:
+                taxedAmount = income  - totalAmountTaxed
+
+            interest += rate/100 * taxedAmount
+            totalAmountTaxed += taxedAmount
+            prevBracket = upperBracket
+            
+        return interest

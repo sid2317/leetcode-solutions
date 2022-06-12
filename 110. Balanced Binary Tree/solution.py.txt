@@ -1,0 +1,17 @@
+class Solution:   
+    isTreeBalanced = True
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        def isBalancedHelper(root):
+            if not root:
+                return -1
+
+            left = isBalancedHelper(root.left)
+            right = isBalancedHelper(root.right)
+
+            if abs(left - right) > 1:
+                self.isTreeBalanced = False
+        
+            return 1 + max(left, right)
+        
+        isBalancedHelper(root)
+        return self.isTreeBalanced
